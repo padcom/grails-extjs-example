@@ -29,7 +29,15 @@ MyDesktop = new Ext.app.App({
 
     getModules: function(){
         return [
-            new MyDesktop.BogusModule()
+            new Ext.app.EmbeddedModule({ 
+                id: 'example-win',
+                url: '/example/modules/example.gsp',
+                name: 'Example 1',
+                title: 'Example 2',
+                iconCls: 'grid-icon',
+                width: 800,
+                height: 600
+            })
         ];
     },
 
@@ -58,30 +66,36 @@ MyDesktop = new Ext.app.App({
     }
 });
 
-MyDesktop.BogusModule = Ext.extend(Ext.app.Module, {
-    id:'example-win',
+//    id: 'example-win',
+//    url: '/example/modules/example.gsp',
+//    name: 'Example',
+//    title: 'Example',
+//    iconCls: 'grid-icon',
+//    width: 800,
+//    height: 600,
 
+Ext.app.EmbeddedModule = Ext.extend(Ext.app.Module, {
     init : function(){
         this.launcher = {
-            text: 'Example',
-            iconCls: 'grid-icon',
+            text: this.name,
+            iconCls: this.iconCls,
             handler : this.createWindow,
             scope: this,
-            windowId: 'example-win'
+            windowId: this.id
         }
     },
 
     createWindow : function(src){
         var desktop = this.app.getDesktop();
-        var win = desktop.getWindow('example-win');
+        var win = desktop.getWindow(this.id);
         if(!win){
             win = desktop.createWindow({
-                id: 'example-win',
-                title:'Example',
-                iconCls: 'grid-icon',
-                width:640,
-                height:480,
-                autoLoad: { url: '/example/modules/example.gsp', scripts: true, params: { parentId: 'example-win' }, method: 'GET' },
+                id: this.id,
+                title: this.title,
+                iconCls: this.iconCls,
+                width:this.width,
+                height:this.height,
+                autoLoad: { url: this.url, scripts: true, params: { parentId: this.id }, method: 'GET' },
                 shim:false,
                 animCollapse:true,
                 constrainHeader:true
