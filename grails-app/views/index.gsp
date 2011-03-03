@@ -81,7 +81,7 @@ MyDesktop.BogusModule = Ext.extend(Ext.app.Module, {
                 iconCls: 'grid-icon',
                 width:640,
                 height:480,
-                html : '<p>Something useful would be in here.</p>',
+                autoLoad: { url: '/example/modules/example.gsp', scripts: true, params: { parentId: 'example-win' }, method: 'GET' },
                 shim:false,
                 animCollapse:true,
                 constrainHeader:true
