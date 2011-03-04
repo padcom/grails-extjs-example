@@ -4,7 +4,7 @@ Ext.onReady(function() {
   var count = 0;
 
   new Ext.Panel({
-//      layout: 'fit',
+      layout: 'fit',
       title: 'My panel',
       renderTo: win.body,
       items: {
