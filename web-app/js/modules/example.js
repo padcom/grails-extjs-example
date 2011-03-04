@@ -1,12 +1,10 @@
-Ext.onReady(function() {
+Modules.Example.main = function() {
   var win = Ext.getCmp(Modules.Example.config.parentId);
 
   var count = 0;
-
-  new Ext.Panel({
+  var panel = new Ext.Panel({
       layout: 'fit',
       title: 'My panel',
-      renderTo: win.body,
       items: {
         xtype: 'button',
         text: 'clickme1',
@@ -15,4 +13,7 @@ Ext.onReady(function() {
         }
       }
   });
-});
+
+  win.add(panel);
+  win.doLayout();
+};
