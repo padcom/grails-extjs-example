@@ -65,45 +65,6 @@ MyDesktop = new Ext.app.App({
         } ]
     }
 });
-
-//    id: 'example-win',
-//    url: '/example/modules/example.gsp',
-//    name: 'Example',
-//    title: 'Example',
-//    iconCls: 'grid-icon',
-//    width: 800,
-//    height: 600,
-
-Ext.app.EmbeddedModule = Ext.extend(Ext.app.Module, {
-    init : function(){
-        this.launcher = {
-            text: this.name,
-            iconCls: this.iconCls,
-            handler : this.createWindow,
-            scope: this,
-            windowId: this.id
-        }
-    },
-
-    createWindow : function(src){
-        var desktop = this.app.getDesktop();
-        var win = desktop.getWindow(this.id);
-        if(!win){
-            win = desktop.createWindow({
-                id: this.id,
-                title: this.title,
-                iconCls: this.iconCls,
-                width:this.width,
-                height:this.height,
-                autoLoad: { url: this.url, scripts: true, params: { parentId: this.id }, method: 'GET' },
-                shim:false,
-                animCollapse:true,
-                constrainHeader:true
-            });
-        }
-        win.show();
-    }
-});
     </script>
 </head>
 
