@@ -5,3 +5,6 @@ target
 .project
 plugin.xml
 *.zip
+*.iml
+*.ipr
+*.iws
