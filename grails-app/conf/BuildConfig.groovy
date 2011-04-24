@@ -30,4 +30,13 @@ grails.project.dependency.resolution = {
     }
 }
 
-grails.plugin.location.'extjs' = '../grails-extjs'
+def pluginSourceLocations = [
+  '../../../grails-extjs/workspace', // for continous integration
+  '../../grails-extjs'               // for development
+]
+pluginSourceLocations.each { location ->
+  if (new File(location).exists()) {
+    println "Using ${location} for plugin source"
+    grails.plugin.location.'grails-extjs' = location
+  }
+}
